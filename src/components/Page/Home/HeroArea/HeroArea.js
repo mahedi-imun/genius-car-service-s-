@@ -4,13 +4,14 @@ import banner1 from '../../../../images/banner/banner1.jpg'
 import banner2 from '../../../../images/banner/banner2.jpg'
 import banner3 from '../../../../images/banner/banner3.jpg'
 const HeroArea = () => {
-    const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   }
-    return (
-        <Carousel activeIndex={index} onSelect={handleSelect}>
+  return (
+    <div id='banner' >
+      <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -28,7 +29,7 @@ const HeroArea = () => {
             src={banner2}
             alt="Second slide"
           />
-  
+
           <Carousel.Caption>
             <h3>Second slide label</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -40,7 +41,7 @@ const HeroArea = () => {
             src={banner3}
             alt="Third slide"
           />
-  
+
           <Carousel.Caption>
             <h3>Third slide label</h3>
             <p>
@@ -49,7 +50,8 @@ const HeroArea = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    );
+    </div>
+  );
 };
 
 export default HeroArea;

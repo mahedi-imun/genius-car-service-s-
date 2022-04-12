@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 
 const Expert = ({ expert }) => {
+    
     return (
         <div className='col-12 col-md-4 d-flex justify-content-center text-center'>
             <Card style={{ width: '18rem' }}>
