@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -24,7 +25,7 @@ const SignUp = () => {
         
     }
     return (
-        <div className='w-25 mx-auto Regular shadow mt-4'>
+        <div className='w-50 mx-auto Regular shadow mt-4'>
             <h3 className='text-center text-primary'>SignUp</h3>
             <Form onSubmit={handleFormSubmit} className='p-3'>
                 <Form.Group className="mb-3" controlId="formBasicText">
@@ -47,6 +48,7 @@ const SignUp = () => {
                     Submit
                 </Button>
             </Form>
+            <SocialLogin></SocialLogin>
 
         </div>
     );

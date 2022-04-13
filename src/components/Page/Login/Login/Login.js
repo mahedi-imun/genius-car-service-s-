@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase.init';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const location = useLocation()
@@ -30,7 +31,7 @@ const Login = () => {
 
     }
     return (
-        <div className=' w-25 rounded mx-auto Regular shadow mt-4'>
+        <div className=' w-50 rounded mx-auto Regular shadow mt-4'>
             <h3 className='text-center text-primary'>login</h3>
             <Form onSubmit={handleFromSubmit} className=' p-3'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -45,11 +46,12 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <h6>new to genius car ? <button onClick={() => navigate('/signup')} className='text-danger border-0 btn btn-primary-outline p-0 m-0'>Create account</button></h6>
+                <p className='p-0'>new to genius car ? <Link to='/signup' >Create account</Link></p>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
+            <SocialLogin></SocialLogin>
 
         </div>
     );
