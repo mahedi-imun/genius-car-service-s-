@@ -22,7 +22,7 @@ const Service = ({ service }) => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className='border-0 text-center'>
-                    <Button  onClick={()=>handleServiceDetail(id)} >see more</Button>
+                    <Button  onClick={()=>handleServiceDetail(id)} >book now</Button>
                 </Card.Footer>
             </Card>
             </CardGroup>
