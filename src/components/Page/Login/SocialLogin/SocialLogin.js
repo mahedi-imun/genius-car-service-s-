@@ -4,18 +4,23 @@ import appleLogo from '../../../../images/social/apple-logo.png'
 import facebookLogo from '../../../../images/social/facebook-logo.png'
 import auth from '../../../../firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../hooks/useToken';
 const SocialLogin = () => {
+    
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [token]=useToken(user)
     let errorElement;
     if(error){
         errorElement = <div>
             <p className='text-danger'>{error.message}</p>
         </div>
     }
-    if(user){
-        navigate('/home')
+    if(token){
+        navigate(from, { replace: true });
     }
     return (
         <>

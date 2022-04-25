@@ -12,7 +12,7 @@ const Order = () => {
 
     useEffect(() => {
         const getOrder = async () => {
-            const url = `http://localhost:5000/order?email=${user?.email}`
+            const url = `https://obscure-hollows-03844.herokuapp.com/order?email=${user?.email}`
             try {
                 const { data } = await axios.get(url, {
                     headers: {
@@ -21,13 +21,13 @@ const Order = () => {
                 })
                 setOrder(data)
             }
-            catch(error){
-                if(error.response.status === 403 ||error.response.status ===401 ){
+            catch (error) {
+                if (error.response.status === 403 || error.response.status === 401) {
                     signOut(auth)
                     navigate('/login')
 
                 }
-                
+
 
             }
         }

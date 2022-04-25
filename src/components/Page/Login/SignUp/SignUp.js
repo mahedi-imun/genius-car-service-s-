@@ -6,6 +6,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { async } from '@firebase/util';
 import PageTitle from '../../../Shared/PageTitle/PageTitle';
+import useToken from '../../../hooks/useToken';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -18,11 +19,15 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [token]=useToken(user)
     console.log(user);
     if (error) {
 
         errorElement = <p className='text-danger'>Error: {error.message}</p>;
 
+    }
+    if(token){
+        navigate('/home')
     }
     const handleFormSubmit = async (event) => {
         event.preventDefault()
@@ -32,7 +37,7 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(email, password)
         await updateProfile({ displayName: name });
         alert('successful create account');
-        navigate('/home')
+        
 
 
     }
