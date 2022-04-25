@@ -5,6 +5,7 @@ import auth from '../../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { async } from '@firebase/util';
+import PageTitle from '../../../Shared/PageTitle/PageTitle';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -37,6 +38,7 @@ const SignUp = () => {
     }
     return (
         <div className='w-50 mx-auto Regular shadow mt-4'>
+            <PageTitle title='Sign up'></PageTitle>
             <h3 className='text-center text-primary'>SignUp</h3>
             <Form onSubmit={handleFormSubmit} className='p-3'>
                 <Form.Group className="mb-3" controlId="formBasicText">

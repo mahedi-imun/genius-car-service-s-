@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Service.css'
 const Service = ({ service }) => {
     const navigate = useNavigate()
-    const { price, description, img, name ,id} = service;
+    const { price, description, img, name ,_id} = service;
     const handleServiceDetail = (id)=>{
         navigate(`service/${id}`)
 
@@ -22,7 +22,7 @@ const Service = ({ service }) => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className='border-0 text-center'>
-                    <Button  onClick={()=>handleServiceDetail(id)} >book now</Button>
+                    <Button  onClick={()=>handleServiceDetail(_id)} >book now</Button>
                 </Card.Footer>
             </Card>
             </CardGroup>

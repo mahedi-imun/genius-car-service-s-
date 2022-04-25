@@ -7,6 +7,8 @@ import Loading from '../../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageTitle from '../../../Shared/PageTitle/PageTitle';
+import axios from 'axios';
 const Login = () => {
     const [sendPasswordResetEmail,] = useSendPasswordResetEmail(
         auth
@@ -27,18 +29,22 @@ const Login = () => {
         return <Loading></Loading>
     }
     if (user) {
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
     if (error) {
 
         errorElement = <p className='text-danger'>Error: {error.message}</p>;
 
     }
-    const handleFromSubmit = (e) => {
+    const handleFromSubmit = async (e) => {
         e.preventDefault()
         const email = emailRef.current.value
         const password = passwordRef.current.value
-        signInWithEmailAndPassword(email, password)
+        await signInWithEmailAndPassword(email, password)
+        const {data}= await axios.post('http://localhost:5000/login',{email});
+        localStorage.setItem('accessToken',data.accessToken)
+        navigate(from, { replace: true })
+
 
 
     }
@@ -47,12 +53,13 @@ const Login = () => {
         if (email) {
             await sendPasswordResetEmail(email);
             toast('Sent email');
-        }else{
+        } else {
             toast('please give your email address')
         }
     }
     return (
         <div className=' w-50 rounded mx-auto Regular shadow mt-4'>
+            <PageTitle title='login'></PageTitle>
             <h3 className='text-center text-primary'>login</h3>
             <Form onSubmit={handleFromSubmit} className=' p-3'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -64,7 +71,7 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control ref={passwordRef} required type="password" placeholder="Password" />
                 </Form.Group>
-                
+
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 </Form.Group>
                 {errorElement}
